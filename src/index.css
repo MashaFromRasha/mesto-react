@@ -5,5 +5,18 @@
 @import url(../src/blocks/header/header.css);
 @import url(../src/blocks/header/__logo/header__logo.css);
 
+@import url(../src/blocks/main/main.css);
+
+@import url(../src/blocks/profile/profile.css);
+@import url(../src/blocks/profile/__overlay/profile__overlay.css);
+@import url(../src/blocks/profile/__avatar/profile__avatar.css);
+@import url(../src/blocks/profile/__avatar-button-edit/profile__avatar-button-edit.css);
+@import url(../src/blocks/profile/__text-block/profile__text-block.css);
+@import url(../src/blocks/profile/__row-block/profile__row-block.css);
+@import url(../src/blocks/profile/__author/profile__author.css);
+@import url(../src/blocks/profile/__button-edit/profile__button-edit.css);
+@import url(../src/blocks/profile/__status/profile__status.css);
+@import url(../src/blocks/profile/__button-add/profile__button-add.css);
+
 @import url(../src/blocks/footer/footer.css);
 @import url(../src/blocks/footer/__copy/footer__copy.css);
