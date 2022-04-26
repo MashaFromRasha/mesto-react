@@ -7,16 +7,20 @@ import PopupWithForm from './PopupWithForm';
 
 
 function App() {
+
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
   }
 
-  const handleEditProfileClick = () => { setIsEditProfilePopupOpen(true) }
-  const handleAddPlaceClick = () => { setIsAddPlacePopupOpen(true) }
+  const handleEditProfileClick = () => { setIsEditProfilePopupOpen(true) };
+  const handleAddPlaceClick = () => { setIsAddPlacePopupOpen(true) };
+  const handleEditAvatarClick = () => { setIsEditAvatarPopupOpen(true) }
 
 
   return (
@@ -29,6 +33,7 @@ function App() {
       <Main
         altAvatar="Изображение автора"
         avatarButton="Заменить аватар профиля"
+        onEditAvatar={handleEditAvatarClick}
         editButton="Изменить описание профиля"
         onEditProfile={handleEditProfileClick}
         addButton="Добавить новое фото"
@@ -36,6 +41,7 @@ function App() {
       />
 
       <Footer text="2022 Mesto Russia" />
+
 
       {/* Popup редактирования профиля */}
       <PopupWithForm
@@ -55,6 +61,7 @@ function App() {
       </PopupWithForm>
 
 
+      {/* Popup добавления новой карточки */}
       <PopupWithForm
         name="popup-add-card"
         title="Новое место"
@@ -68,6 +75,20 @@ function App() {
         <input className="popup__input popup__input_type_photo" type="url" placeholder="Ссылка на фото"
           name="popup-input-url" required />
         <span id="popup-input-url-error" className="popup__error"></span>
+      </PopupWithForm>
+
+
+      {/* Popup обновления аватара */}
+      <PopupWithForm
+        name={"popup-add-avatar"}
+        title={"Обновить аватар"}
+        textButton={"Обновить"}
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
+      >
+        <input className="popup__input popup__input_type_photo" type="url" placeholder="Ссылка на аватар"
+          name="popup-input-url-avatar" required />
+        <span id="popup-input-url-avatar-error" className="popup__error"></span>
       </PopupWithForm>
     </div>
   )
