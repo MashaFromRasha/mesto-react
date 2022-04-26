@@ -7,6 +7,15 @@ import PopupWithForm from './PopupWithForm';
 
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+
+  function closeAllPopups() {
+    setIsEditProfilePopupOpen(false);
+  }
+
+  const handleEditProfileClick = () => { setIsEditProfilePopupOpen(true) }
+
+
   return (
     <div>
       <Header
@@ -18,6 +27,7 @@ function App() {
         altAvatar={"Изображение автора"}
         avatarButton={"Заменить аватар профиля"}
         editButton={"Изменить описание профиля"}
+        onEditProfile={handleEditProfileClick}
         addButton={"Добавить новое фото"}
       />
 
@@ -28,6 +38,8 @@ function App() {
         name={"popup-profile"}
         title={"Редактировать профиль"}
         textButton={"Сохранить"}
+        isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
       >
 
         <input className={"popup__input popup__input_type_author"} type={"text"} placeholder={"Ваше имя"}

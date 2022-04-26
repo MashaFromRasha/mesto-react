@@ -1,7 +1,7 @@
 function PopupWithForm(props) {
 
     return (
-      <section className={"popup popup_opened"}>
+      <div className={`popup popup_type_${props.name} ${props.isOpen && 'popup_opened'}`}>
         <div className={"popup__container"}>
           <button
             className={"popup__button-close"}
@@ -22,7 +22,7 @@ function PopupWithForm(props) {
             </button>
           </form>
         </div>
-      </section>
+      </div>
     );
   }
   
