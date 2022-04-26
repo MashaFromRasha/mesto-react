@@ -1,7 +1,7 @@
 function Footer(props) {
   return (
     <footer className={"footer"}>
-      <p className={"footer__copy"}>&copy; {props.text}</p>
+      <p className={"footer__copy"}>&copy; 2022 Mesto Russia</p>
     </footer>
   );
 }

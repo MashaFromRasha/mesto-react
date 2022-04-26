@@ -1,8 +1,9 @@
+import logo from '../images/header-logo.svg';
 
-function Header({ srcLogo, altLogo }) {
+function Header() {
   return (
     <header className={"header"}>
-      <img src={srcLogo} alt={altLogo} className={"header__logo"} />
+      <img src={logo} alt="Логотип сайта" className={"header__logo"} />
     </header>
   );
 }

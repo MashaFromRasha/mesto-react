@@ -1,9 +1,9 @@
 import React from 'react';
 import Header from './Header';
-import logo from '../images/header-logo.svg';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
 
 
 function App() {
@@ -12,35 +12,35 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
+  const [selectedCard, setSelectedCard] = React.useState({ isOpen: false });
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+
+    setSelectedCard({ isOpen: false });
   }
 
   const handleEditProfileClick = () => { setIsEditProfilePopupOpen(true) };
   const handleAddPlaceClick = () => { setIsAddPlacePopupOpen(true) };
-  const handleEditAvatarClick = () => { setIsEditAvatarPopupOpen(true) }
+  const handleEditAvatarClick = () => { setIsEditAvatarPopupOpen(true) };
+
+  const handleCardClick = (data) => { setSelectedCard({ isOpen: true, ...data }) };
 
 
   return (
     <div>
-      <Header
-        srcLogo={logo}
-        altLogo="Логотип Места России"
-      />
+      <Header />
 
       <Main
-        altAvatar="Изображение автора"
-        avatarButton="Заменить аватар профиля"
         onEditAvatar={handleEditAvatarClick}
-        editButton="Изменить описание профиля"
         onEditProfile={handleEditProfileClick}
-        addButton="Добавить новое фото"
         onAddPlace={handleAddPlaceClick}
+        onCardClick={(data) => { handleCardClick(data) }}
       />
 
-      <Footer text="2022 Mesto Russia" />
+      <Footer />
 
 
       {/* Popup редактирования профиля */}
@@ -90,6 +90,20 @@ function App() {
           name="popup-input-url-avatar" required />
         <span id="popup-input-url-avatar-error" className="popup__error"></span>
       </PopupWithForm>
+
+
+      {/* Popup подтверждения удаления карточки */}
+      <PopupWithForm
+        name={"popup-remove-card"}
+        title={"Вы уверены?"}
+        textButton={"Да"}
+      />
+
+      {/* Popup просмотра фото */}
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
     </div>
   )
 

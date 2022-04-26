@@ -40,20 +40,20 @@ function Main(props) {
 
 
   return (
-    <main className={"main"}>
-      <section className={"profile"}>
-        <div className={"profile__overlay"} >
-          <img src={userAvatar} alt={props.altAvatar} className={"profile__avatar"} />
-          <button className={"profile__avatar-button-edit"} type={"button"} onClick={props.onEditAvatar} aria-label={props.avatarButton}></button>
+    <main className="main">
+      <section className="profile">
+        <div className="profile__overlay">
+          <img src={userAvatar} alt="Изображение автора" className="profile__avatar" />
+          <button className="profile__avatar-button-edit" type="button" onClick={props.onEditAvatar} aria-label="Заменить аватар профиля"></button>
         </div>
-        <div className={"profile__text-block"}>
-          <div className={"profile__row-block"}>
-            <h1 className={"profile__author"}>{userName}</h1>
-            <button className={"profile__button-edit"} type={"button"} onClick={props.onEditProfile} aria-label={props.editButton}></button>
+        <div className="profile__text-block">
+          <div className="profile__row-block">
+            <h1 className="profile__author">{userName}</h1>
+            <button className="profile__button-edit" type="button" onClick={props.onEditProfile} aria-label="Изменить описание профиля"></button>
           </div>
-          <p className={"profile__status"}>{userDescription}</p>
+          <p className="profile__status">{userDescription}</p>
         </div>
-        <button className={"profile__button-add"} type={"button"} onClick={props.onAddPlace} aria-label={props.addButton}></button>
+        <button className="profile__button-add" type="button" onClick={props.onAddPlace} aria-label="Добавить новое фото"></button>
       </section>
 
 
@@ -62,7 +62,7 @@ function Main(props) {
           <Card
             key={item._id}
             {...item}
-            onCardClick={props.onCardClick}
+            handleClick={() => { props.onCardClick(item) }}
           />
         )
         )}
