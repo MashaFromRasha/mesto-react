@@ -1,10 +1,15 @@
 import React from 'react';
 import api from '../utils/Api.js';
+import Card from './Card.js';
+
 
 function Main(props) {
+
   const [userName, setUserName] = React.useState('Loading...');
   const [userDescription, setUserDescription] = React.useState('Loading...');
   const [userAvatar, setUserAvatar] = React.useState();
+  const [cards, setCards] = React.useState([]);
+
 
   React.useEffect(() => {
     api.getInfoUser()
@@ -12,6 +17,23 @@ function Main(props) {
         setUserName(res.name);
         setUserDescription(res.about);
         setUserAvatar(res.avatar);
+      })
+      .catch(err => console.log(`Error: ${err}`));
+  }, []);
+
+
+  React.useEffect(() => {
+    api.getInitialCards()
+      .then(res => {
+        const cards = res.map(item => {
+          return {
+            id: item._id,
+            src: item.link,
+            title: item.name,
+            likes: item.likes.length
+          };
+        });
+        setCards(cards);
       })
       .catch(err => console.log(`Error: ${err}`));
   }, []);
@@ -33,8 +55,21 @@ function Main(props) {
         </div>
         <button className={"profile__button-add"} type={"button"} onClick={props.onAddPlace} aria-label={props.addButton}></button>
       </section>
+
+
+      <section className="photos">
+        {cards.map(item => (
+          <Card
+            key={item._id}
+            {...item}
+            onCardClick={props.onCardClick}
+          />
+        )
+        )}
+      </section>
     </main>
   );
+
 }
 
 export default Main;
