@@ -1,10 +1,7 @@
 function ImagePopup(props) {
-  const className = `popup  ${props.card && 'popup_opened'}`;
-
-
 
   return (
-    <section className={className} id="popup-open-image">
+    <section className={`popup ${props.card && 'popup_opened'}`} id="popup-open-image">
       <figure className="popup__figure">
         <button
           className="popup__button-close"

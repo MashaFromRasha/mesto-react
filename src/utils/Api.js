@@ -22,6 +22,7 @@ class Api {
             .then(this._checkResponse);
     }
 
+
     editInfoUser(data) {
         return fetch(`${this._address}/${this._groupId}/users/me`, {
             method: 'PATCH',
@@ -34,12 +35,14 @@ class Api {
             .then(this._checkResponse);
     }
 
+
     getInitialCards() {
         return fetch(`${this._address}/${this._groupId}/cards`, {
             headers: this._headers,
         })
             .then(this._checkResponse);
     }
+
 
     addCard(data) {
         return fetch(`${this._address}/${this._groupId}/cards`, {
@@ -53,6 +56,7 @@ class Api {
             .then(this._checkResponse);
     }
 
+
     removeCard(id) {
         return fetch(`${this._address}/${this._groupId}/cards/${id}`, {
             method: 'DELETE',
@@ -60,6 +64,7 @@ class Api {
         })
             .then(this._checkResponse);
     }
+
 
     addLike(id) {
         return fetch(`${this._address}/${this._groupId}/cards/likes/${id}`, {
@@ -69,6 +74,7 @@ class Api {
             .then(this._checkResponse);
     }
 
+
     removeLike(id) {
         return fetch(`${this._address}/${this._groupId}/cards/likes/${id}`, {
             method: 'DELETE',
@@ -76,6 +82,7 @@ class Api {
         })
             .then(this._checkResponse);
     }
+
 
     editUserAvatar(data) {
         return fetch(`${this._address}/${this._groupId}/users/me/avatar`, {
@@ -93,8 +100,8 @@ const config = {
     baseUrl: 'https://mesto.nomoreparties.co/v1',
     groupId: 'cohort-39',
     headers: {
-      authorization: '65df588a-f3b5-4198-8939-b069c90bb6b0',
-      'Content-Type': 'application/json'
+        authorization: '65df588a-f3b5-4198-8939-b069c90bb6b0',
+        'Content-Type': 'application/json'
     }
 };
 
