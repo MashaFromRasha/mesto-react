@@ -19,21 +19,10 @@ function Main(props) {
         setUserAvatar(res.avatar);
       })
       .catch(err => console.log(`Error: ${err}`));
-  }, []);
 
-
-  React.useEffect(() => {
     api.getInitialCards()
       .then(res => {
-        const cards = res.map(item => {
-          return {
-            id: item._id,
-            src: item.link,
-            title: item.name,
-            likes: item.likes.length
-          };
-        });
-        setCards(cards);
+        setCards(res);
       })
       .catch(err => console.log(`Error: ${err}`));
   }, []);
@@ -58,14 +47,14 @@ function Main(props) {
 
 
       <section className="photos">
-        {cards.map(item => (
-          <Card
-            key={item._id}
-            {...item}
-            handleClick={() => { props.onCardClick(item) }}
-          />
-        )
-        )}
+        {
+          cards.map(item => 
+          <Card 
+          key={item._id} 
+          card={item} 
+          onCardClick={props.onCardClick} 
+          />)
+        }
       </section>
     </main>
   );
