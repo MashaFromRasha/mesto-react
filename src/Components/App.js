@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -12,19 +12,20 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
-  const [selectedCard, setSelectedCard] = useState('');
+  const [selectedCard, setSelectedCard] = useState(null);
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
 
-    setSelectedCard('');
+    setSelectedCard(null);
+
   }
 
-  const handleEditProfileClick = () => { setIsEditProfilePopupOpen(true) };
-  const handleAddPlaceClick = () => { setIsAddPlacePopupOpen(true) };
-  const handleEditAvatarClick = () => { setIsEditAvatarPopupOpen(true) };
+  const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
+  const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
+  const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
 
   const handleCardClick = (data) => setSelectedCard(data);
 
