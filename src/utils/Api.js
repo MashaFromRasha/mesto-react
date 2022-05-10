@@ -94,12 +94,12 @@ class Api {
         }
     }
 
-    editUserAvatar(data) {
+    setUserAvatar(data) {
         return fetch(`${this._address}/${this._groupId}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                avatar: data['popup-input-url-avatar'],
+                avatar: data.avatar,
             })
         })
             .then(this._checkResponse);

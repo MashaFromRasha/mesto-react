@@ -3,6 +3,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
@@ -17,7 +18,8 @@ function App() {
 
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({
-    name: "Loading..."
+    name: 'Loading...',
+    about: ''
   });
 
   function closeAllPopups() {
@@ -48,11 +50,21 @@ function App() {
   function handleUpdateUser(data) {
     api.setUserInfo(data)
       .then(
-        ({ name, about, avatar}) => {
-          setCurrentUser({ name, about, avatar});
+        ({ name, about, avatar }) => {
+          setCurrentUser({ name, about, avatar });
           closeAllPopups();
       })
       .catch((err) => console.log(`Error: ${err}`));
+  }
+
+  function handleUpdateAvatar(data) {
+    api.setUserAvatar(data)
+      .then(
+        ({ name, about, avatar }) => {
+        setCurrentUser({ name, about, avatar });
+        closeAllPopups();
+      })
+      .catch(err => console.log(`Error: ${err}`));
   }
 
 
@@ -98,17 +110,11 @@ function App() {
 
 
       {/* Popup обновления аватара */}
-      <PopupWithForm
-        name={"popup-add-avatar"}
-        title={"Обновить аватар"}
-        textButton={"Обновить"}
+      <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-      >
-        <input className="popup__input popup__input_type_photo" type="url" placeholder="Ссылка на аватар"
-          name="popup-input-url-avatar" required />
-        <span id="popup-input-url-avatar-error" className="popup__error"></span>
-      </PopupWithForm>
+        onUpdateAvatar={handleUpdateAvatar}
+      />
 
 
       {/* Popup подтверждения удаления карточки */}
