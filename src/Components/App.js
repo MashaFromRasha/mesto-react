@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
+import EditProfilePopup from './EditProfilePopup';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
+import { CurrentUserContext } from "../Contexts/CurrentUserContext";
+import api from "../utils/Api";
 
 function App() {
 
@@ -13,6 +16,9 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
   const [selectedCard, setSelectedCard] = useState(null);
+  const [currentUser, setCurrentUser] = useState({
+    name: "Loading..."
+  });
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -29,9 +35,30 @@ function App() {
 
   const handleCardClick = (data) => setSelectedCard(data);
 
+  useEffect(() => {
+    api
+      .getUserInfo()
+      .then(
+        ({ name, about, avatar, _id }) => {
+          setCurrentUser({ name, about, avatar, _id });
+      })
+      .catch((err) => console.log(`Error: ${err}`));
+  }, []);
+
+  function handleUpdateUser(data) {
+    api.setUserInfo(data)
+      .then(
+        ({ name, about, avatar}) => {
+          setCurrentUser({ name, about, avatar});
+          closeAllPopups();
+      })
+      .catch((err) => console.log(`Error: ${err}`));
+  }
+
 
   return (
     <div>
+    <CurrentUserContext.Provider value={currentUser}>
       <Header />
 
       <Main
@@ -45,21 +72,12 @@ function App() {
 
 
       {/* Popup редактирования профиля */}
-      <PopupWithForm
-        name="popup-profile"
-        title="Редактировать профиль"
-        textButton="Сохранить"
+      <EditProfilePopup
+
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-      >
-
-        <input className="popup__input popup__input_type_author" type="text" placeholder="Ваше имя"
-          name="popup-input-name" minLength="2" maxLength="40" required />
-        <span id="popup-input-name-error" className="popup__error"></span>
-        <input className="popup__input popup__input_type_status" type="text" placeholder="Расскажите о себе"
-          name="popup-input-status" minLength="2" maxLength="200" required />
-        <span id="popup-input-status-error" className="popup__error"></span>
-      </PopupWithForm>
+        onUpdateUser={handleUpdateUser}
+      />
 
 
       {/* Popup добавления новой карточки */}
@@ -105,6 +123,7 @@ function App() {
         card={selectedCard}
         onClose={closeAllPopups}
       />
+    </CurrentUserContext.Provider>
     </div>
   )
 }

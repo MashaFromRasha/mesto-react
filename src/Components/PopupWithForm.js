@@ -3,6 +3,7 @@ function PopupWithForm({
   title,
   isOpen,
   onClose,
+  onSubmit,
   children,
   textButton
 }) {
@@ -19,13 +20,16 @@ function PopupWithForm({
         <h2 className={"popup__title"}>
           {title}</h2>
         <form
-          className={"popup__form"}
+          className="popup__form"
           name={name}
-          id={"popup-form-edit"}>
+          id={"popup-form-edit"}
+          onSubmit={onSubmit}
+        >
           {children}
           <button
             className={"popup__button-submit"}
-            type={"submit"}>
+            type={"submit"}
+          >
             {textButton}
           </button>
         </form>

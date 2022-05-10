@@ -15,29 +15,31 @@ class Api {
     }
 
 
-    getInfoUser() {
+    getUserInfo() {
         return fetch(`${this._address}/${this._groupId}/users/me`, {
+            method: 'GET',
             headers: this._headers,
         })
             .then(this._checkResponse);
     }
 
 
-    editInfoUser(data) {
+    setUserInfo(data) {
         return fetch(`${this._address}/${this._groupId}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name: data['popup-input-name'],
-                about: data['popup-input-status'],
+                name: data.name,
+                about: data.about,
             })
         })
             .then(this._checkResponse);
     }
 
 
-    getInitialCards() {
+    getCards() {
         return fetch(`${this._address}/${this._groupId}/cards`, {
+            method: 'GET',
             headers: this._headers,
         })
             .then(this._checkResponse);
@@ -83,6 +85,14 @@ class Api {
             .then(this._checkResponse);
     }
 
+
+    changeLikeCardStatus(id, isLiked) {
+        if (isLiked) {
+          return this.removeLike(id);
+        } else {
+          return this.addLike(id);
+        }
+    }
 
     editUserAvatar(data) {
         return fetch(`${this._address}/${this._groupId}/users/me/avatar`, {

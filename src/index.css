@@ -23,6 +23,8 @@
 @import url(../src/blocks/card/card.css);
 @import url(../src/blocks/card/__image/card__image.css);
 @import url(../src/blocks/card/__button-remove/card__button-remove.css);
+@import url(../src/blocks/card/__button-remove/_visible/card__button-remove_visible.css);
+@import url(../src/blocks/card/__button-remove/_hidden/card__button-remove_hidden.css);
 @import url(../src/blocks/card/__row-block/card__row-block.css);
 @import url(../src/blocks/card/__title/card__title.css);
 @import url(../src/blocks/card/__like-container/card__like-container.css);
