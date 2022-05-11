@@ -45,14 +45,18 @@ class Api {
             .then(this._checkResponse);
     }
 
+    getInitialData() {
+        return Promise.all([this.getUserInfo(), this.getCards()]);
+    }
+
 
     addCard(data) {
         return fetch(`${this._address}/${this._groupId}/cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                name: data['popup-input-place-name'],
-                link: data['popup-input-url']
+                name: data.name,
+                link: data.link
             })
         })
             .then(this._checkResponse);

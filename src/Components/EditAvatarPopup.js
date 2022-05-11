@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function EditAvatarPopup(props) {
+function EditAvatarPopup({ onUpdateAvatar, isOpen, onClose }) {
   const [inputValue, setInputValue] = useState('');
 
   function handleChangeAvatar(e) {
@@ -11,7 +11,7 @@ function EditAvatarPopup(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onUpdateAvatar({
+    onUpdateAvatar({
       avatar: inputValue,
     });
     setInputValue('');
@@ -22,8 +22,8 @@ function EditAvatarPopup(props) {
       name="avatar"
       title="Обновить аватар"
       textButton="Обновить"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       onSubmit={handleSubmit}
     >
       <input className="popup__input popup__input_type_photo"

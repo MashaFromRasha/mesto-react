@@ -35,9 +35,9 @@
 
 ## Будущая доработка проекта будет включать в себя добавление функционала:
 
-* редактирования пользовательских данных;
-* добавления новых карточек с фотографиями и возможности поставить им "лайк";
 * live валидации форм;
+* создание индикаторов загрузки запросов;
+* создание всплывающего подтверждения удаления карточек с фотографиями;
 
 ## Макеты проектной работы в Figma:
 
@@ -55,3 +55,4 @@
 * [Чеклист 8](https://code.s3.yandex.net/web-developer/checklists/new-program/checklist-8/index.html)
 * [Чеклист 9](https://code.s3.yandex.net/web-developer/checklists/new-program/checklist-9/index.html)
 * [Чеклист 10](https://code.s3.yandex.net/web-developer/checklists/new-program/checklist-10/index.html)
+* [Чеклист 11](https://code.s3.yandex.net/web-developer/checklists/new-program/checklist-11/index.html)

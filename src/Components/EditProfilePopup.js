@@ -3,9 +3,9 @@ import { CurrentUserContext } from "../Contexts/CurrentUserContext";
 import PopupWithForm from "./PopupWithForm";
 
 function EditProfilePopup({ 
-    onUpdateUser, 
-    isOpen, 
-    onClose
+  onUpdateUser, 
+  isOpen, 
+  onClose
 }) {
   const currentUser = useContext(CurrentUserContext);
 
