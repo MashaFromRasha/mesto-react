@@ -41,7 +41,7 @@ function App() {
   function handleCardDelete(card) {
     api.removeCard(card._id)
       .then(() => {
-        const newCards = cards.filter((elem) => elem !== card);
+        const newCards = cards.filter((elem) => elem._id !== card._id);
         setCards(newCards);
       })
       .catch(err => console.log(`Error: ${err}`));
@@ -57,7 +57,7 @@ function App() {
           setCurrentUser(userData);
       })
       .catch(err => console.log(`Error: ${err}`));
-  }, [])
+  }, []);
 
 
   function handleAddPlaceSubmit(data) {
